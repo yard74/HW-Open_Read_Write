@@ -17,4 +17,24 @@ with open(path, encoding='utf-8') as file:
             )
         cook_book[dish_name] = temp_data
         file.readline()
-    print(cook_book)
+    # print(cook_book)
+
+
+def get_shop_list_by_dishes(dishes, person_count):
+    result = {}
+    for name_of_dish in dishes:
+        for ingredient in cook_book[name_of_dish]:
+            if ingredient['ingredient_name'] in result.keys():
+                result[ingredient['ingredient_name']]['quantity'] += ingredient['quantity']
+            else:
+                result[ingredient['ingredient_name']] = {}
+                result[ingredient['ingredient_name']]['measure'] = ingredient['measure']
+                result[ingredient['ingredient_name']]['quantity'] = ingredient['quantity'] * person_count
+    return result
+
+
+data = get_shop_list_by_dishes(['Омлет', 'Омлет'], 1)
+pprint(data)
+print()
+data = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
+pprint(data)
