@@ -25,7 +25,7 @@ def get_shop_list_by_dishes(dishes, person_count):
     for name_of_dish in dishes:
         for ingredient in cook_book[name_of_dish]:
             if ingredient['ingredient_name'] in result.keys():
-                result[ingredient['ingredient_name']]['quantity'] += ingredient['quantity']
+                result[ingredient['ingredient_name']]['quantity'] += ingredient['quantity'] * person_count
             else:
                 result[ingredient['ingredient_name']] = {}
                 result[ingredient['ingredient_name']]['measure'] = ingredient['measure']
@@ -33,11 +33,11 @@ def get_shop_list_by_dishes(dishes, person_count):
     return result
 
 
-# data = get_shop_list_by_dishes(['Омлет', 'Омлет'], 1)
-# pprint(data)
+new_data = get_shop_list_by_dishes(['Омлет', 'Омлет'], 2)
+pprint(new_data)
 # print()
-# data = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
-# pprint(data)
+# new_data = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
+# pprint(new_data)
 
 
 task_3_path = os.path.join(os.getcwd(), 'task_3_data')
@@ -77,7 +77,6 @@ def get_sorted_data_into_file(new_dict):
     return print('Запись данных в файл прошла успешно.')
 
 
-dict_of_files_data = get_files_dict(task_3_path)
-sorted_dict = get_sorted_files_dict(dict_of_files_data)
-get_sorted_data_into_file(sorted_dict)
-
+# dict_of_files_data = get_files_dict(task_3_path)
+# sorted_dict = get_sorted_files_dict(dict_of_files_data)
+# get_sorted_data_into_file(sorted_dict)
